@@ -43,9 +43,9 @@ public class CSVStatementReader {
         return customerStatements;
     }
 
-    private Function<String, CustomerStatement> mapToCustomerStatement = line -> {
-        String[] p = line.split(",");
-        return new CustomerStatement(Integer.parseInt(p[0]), p[1], p[2], new BigDecimal(p[3]),
-                new BigDecimal(p[4]), new BigDecimal(p[5]));
+    private Function<String, CustomerStatement> mapToCustomerStatement = customerStatement -> {
+        String[] customerStatementArray = customerStatement.split(",");
+        return new CustomerStatement(Integer.parseInt(customerStatementArray[0]), customerStatementArray[1], customerStatementArray[2], new BigDecimal(customerStatementArray[3]),
+                new BigDecimal(customerStatementArray[4]), new BigDecimal(customerStatementArray[5]));
     };
 }

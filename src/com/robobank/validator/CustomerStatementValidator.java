@@ -33,8 +33,8 @@ public class CustomerStatementValidator {
                 // Add the duplicate records
 
                 invalidCustomerStatementSet.add(String.valueOf(new StringBuilder().append(transactionReference).append(RECORD_SEPARATOR).append(description)));
-                // Add parent duplicate records as well
-                invalidCustomerStatementSet.add(String.valueOf(new StringBuilder().append(transactionReference).append(RECORD_SEPARATOR).append(customerStatementMap.get(transactionReference))));
+                // Add parent duplicate records if all the transaction are to be fetched in report
+                // invalidCustomerStatementSet.add(String.valueOf(new StringBuilder().append(transactionReference).append(RECORD_SEPARATOR).append(customerStatementMap.get(transactionReference))));
             }
 
 
