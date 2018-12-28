@@ -13,7 +13,7 @@ Produces three CSV files as below,
 # Assumptions on Output validations
   Some of the validations are assumed as the output validation rule is too broad
   
- 1.all transaction references should be unique - output csv will have all the records repeated more than one time on basis of                                                    transaction reference
+1.all transaction references should be unique - Transaction repeated more than one times are printed in the report
 
 2.the end balance needs to be validated   - Used below formula to check end balance 
                                             End balance = startBalance + mutation
