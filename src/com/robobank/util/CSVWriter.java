@@ -6,12 +6,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Class created to write invalid customer statements into CSV
+ */
 public class CSVWriter {
+    private static Logger logger = Logger.getLogger(CSVWriter.class.getName());
+
+    private CSVWriter() {
+    }
+
     public static void writeInvalidCustomerStatements(Set<String> invalidCustomerDetails, String reportName) throws IOException {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(reportName);
+        try (FileWriter writer = new FileWriter(reportName)) {
+
             writer.append("Transaction reference").append(',').append("description").append('\n');
 
             if (Objects.nonNull(invalidCustomerDetails)) {
@@ -20,13 +29,9 @@ public class CSVWriter {
                     writer.append(transactionRefDescription[0]).append(',').append(transactionRefDescription[1]).append('\n');
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            writer.flush();
-            writer.close();
+        } catch (
+                IOException e) {
+            logger.log(Level.SEVERE, "Exception occurred while writing invalid customer statements into CSV " + e.getMessage());
         }
-
-
     }
 }

@@ -6,6 +6,7 @@ import com.robobank.util.CSVWriter;
 import com.robobank.validator.CustomerStatementValidator;
 
 import java.io.IOException;
+import java.util.Set;
 
 public class Main {
 
@@ -13,11 +14,14 @@ public class Main {
         CSVStatementReader csvStatementReader = new CSVStatementReader();
         XMLStatementReader xmlStatementReader = new XMLStatementReader();
 
-        //CustomerStatementValidator.getInvalidCustomerStatements(roboCSVReader.getCustomerStatements()).forEach(System.out::println);
-        //CustomerStatementValidator.getInvalidCustomerStatements(roboCSVReader.getCustomerStatements()).forEach(System.out::println);
-        CSVWriter.writeInvalidCustomerStatements(CustomerStatementValidator.
-                getInvalidCustomerStatements(csvStatementReader.getCustomerStatements()), "InvalidRecordsInCSVFormat.csv");
-        CSVWriter.writeInvalidCustomerStatements(CustomerStatementValidator.
-                getInvalidCustomerStatements(xmlStatementReader.getCustomerStatements()), "InvalidRecordsInXMLFormat.csv");
+        Set<String> invalidCustomerStatementsInCSV = CustomerStatementValidator.getInvalidCustomerStatements(csvStatementReader.getCustomerStatements());
+        CSVWriter.writeInvalidCustomerStatements(invalidCustomerStatementsInCSV, "InvalidRecordsInCSVFormat.csv");
+
+        Set<String> invalidCustomerStatementsInXML = CustomerStatementValidator.getInvalidCustomerStatements(xmlStatementReader.getCustomerStatements());
+        CSVWriter.writeInvalidCustomerStatements(invalidCustomerStatementsInXML, "InvalidRecordsInXMLFormat.csv");
+        // Invalid customer statements in XML & CSV
+        invalidCustomerStatementsInCSV.addAll(invalidCustomerStatementsInXML);
+        CSVWriter.writeInvalidCustomerStatements(invalidCustomerStatementsInCSV, "InvalidRecordsSummary.csv");
+
     }
 }

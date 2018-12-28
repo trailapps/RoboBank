@@ -9,6 +9,9 @@ import java.util.*;
  */
 
 public class CustomerStatementValidator {
+    private CustomerStatementValidator() {
+    }
+
     public static final String RECORD_SEPARATOR = "@#";
 
     /**
@@ -36,9 +39,6 @@ public class CustomerStatementValidator {
 
 
             if (customerStatement.getEndBalance().compareTo(customerStatement.getStartBalance().add(customerStatement.getMutation())) != 0) {
-           /*     System.out.println("Expected " + customerStatement.getEndBalance() +
-                        " found" + customerStatement.getStartBalance().add(customerStatement.getMutation()));
-           */
                 invalidCustomerStatementSet.add(String.valueOf(new StringBuilder().append(transactionReference).append(RECORD_SEPARATOR).append(description)));
 
             }
