@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 /**
  * Class created to write invalid customer statements into CSV
  */
-public class CSVWriter {
-    private static Logger logger = Logger.getLogger(CSVWriter.class.getName());
+public class InvalidCustomerStatementCSVWriter {
+    private static Logger logger = Logger.getLogger(InvalidCustomerStatementCSVWriter.class.getName());
 
-    private CSVWriter() {
+    private InvalidCustomerStatementCSVWriter() {
     }
 
     public static void writeInvalidCustomerStatements(Set<String> invalidCustomerDetails, String reportName) throws IOException {
